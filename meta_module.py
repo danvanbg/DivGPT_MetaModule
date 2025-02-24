@@ -14,15 +14,11 @@ except ModuleNotFoundError:
 
 load_dotenv()
 api_key = os.getenv("OPENAI_API_KEY")
-client = OpenAI(api_key=api_key)
 
-try:
-    response = openai.Model.list()
-    print("OpenAI API is accessable!")
-except openai.error.AuthenticationError:
-    print("Error: Unvalid Key.")
-except openai.error.RateLimitError:
-    print("Error: Rate limit exceeded. Wait.")
+if not api_key:
+    raise ValueError("API key not found! Make sure it's set in the .env file or as an environment variable.")
+
+client = OpenAI(api_key=api_key)
 
 def get_chatgpt_response(prompt, retries=5):
     """
