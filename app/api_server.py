@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 # Load API key from .key file
-with open("api.key", "r") as key_file:
+with open(".api.key", "r") as key_file:
     VALID_API_KEY = key_file.read().strip()
 
 # Example data
