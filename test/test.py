@@ -26,7 +26,3 @@ except openai.OpenAIError as e:
         print(f"An OpenAI error occurred: {e}")
 except openai.OpenAIError as e:
     print(f"An error occurred: {e}")
-
-
-# Print the response from ChatGPT
-#print(response['choices'][0]['message']['content'])
