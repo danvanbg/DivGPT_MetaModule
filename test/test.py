@@ -15,12 +15,15 @@ if not api_key:
 print(api_key)
 # Create a chat completion request (Corrected for new API version)
 try:
-    response = openai.completions.create(model="gpt-3.5-turbo",
+    response = openai.completions.create(model="gpt-4o",
     prompt="Hello, ChatGPT!",
-    max_tokens=5)
+    max_tokens=15)
     print(response.choices[0].text)
-except openai.RateLimitError as e:
-    print(f"Rate limit exceeded. Please check your quota. {e}")
+except openai.OpenAIError as e:
+    if "insufficient_quota" in str(e):
+        print("You've exceeded your quota. Check your billing details: https://platform.openai.com/account/billing")
+    else:
+        print(f"An OpenAI error occurred: {e}")
 except openai.OpenAIError as e:
     print(f"An error occurred: {e}")
 
