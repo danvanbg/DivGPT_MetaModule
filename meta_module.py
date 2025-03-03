@@ -29,6 +29,8 @@ def read_file(filename):
 local_api_url = read_file(".api.url")
 local_api_key = read_file(".api.key")
 
+#print(api_key)
+
 class AutonomousChatGPTModule:
     def __init__(self):
         self.api_url = local_api_url
@@ -84,7 +86,7 @@ def get_chatgpt_response(prompt, retries=5):
     for attempt in range(retries):
         try:
             response = client.chat.completions.create(
-                model="gpt-4o",
+                model="gpt-4",
                 messages=[{"role": "user", "content": prompt}]
             )
             return response.choices[0].message.content
